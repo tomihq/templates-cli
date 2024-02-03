@@ -1,6 +1,6 @@
 {
   "name": "tomihq-templates-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CLI that clones in your own machine templates as Nest.js, Next.js, Express and more",
   "main": "index.ts",
   "scripts": {
