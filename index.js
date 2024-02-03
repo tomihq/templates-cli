@@ -78,12 +78,11 @@ async function main() {
     }
 
     repositoryName = repositoryNameSelected
-    const shouldContinue = await p.confirm({
+    const shouldContinueWithInstallation = await p.confirm({
       message: `This action will clone in your current directory the "${nameSelected}" repository. Are you sure?`,
     });
 
-    if(!shouldContinue) continue;
-    if(p.isCancel(shouldContinue)) endProcess()
+    if(!shouldContinueWithInstallation || p.isCancel(shouldContinueWithInstallation)) continue;
     
      shell.exec(
       `git clone https://github.com/${user}/${repositoryName}`
