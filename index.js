@@ -54,7 +54,7 @@ async function main() {
 async function startProcess(){
     p.intro(
         `${color.bgMagenta(
-          color.black("📚 What template you would like to use?")
+          color.white("📚 What template you would like to use?")
         )}`
       );
 }
@@ -77,7 +77,7 @@ async function throwError(error){
 }
 
 async function endProcess(){
-    p.outro(`${color.bgGreen(color.white(`Thanks for using the CLI! Check the repository here and feel free to open issues or PR https://github.com/tomihq/templates-cli`))}`);
+    p.outro(`${color.bgGreen(color.black(`Thanks for using the CLI! Check the repository here and feel free to open issues or PR https://github.com/tomihq/templates-cli`))}`);
     process.exit()
 }
 
