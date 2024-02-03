@@ -33,37 +33,6 @@ const options = availableRepositories.map((repository) => {
   };
 });
 
-async function throwError(error){
-    p.intro(
-        `${color.bgRed(
-          color.white(error)
-        )}`
-      );
-}
-
-async function startProcess(){
-    p.intro(
-        `${color.bgMagenta(
-          color.black("What template you would like to use?")
-        )}`
-      );
-}
-
-async function endProcess(){
-    p.outro(`Thanks for using the CLI! Check the repository here and feel free to open issues or PR https://github.com/tomihq/templates-cli`);
-    process.exit()
-}
-
-async function renderMenu() {
-  const repository = await p.select({
-    message: "Select one",
-    options,
-  });
- 
-  return p.isCancel(repository) || availableRepositories[repository - 1].end?endProcess():availableRepositories[repository - 1];
-}
-
-
 
 async function main() {
   let end = false;
@@ -93,5 +62,36 @@ async function main() {
 
   endProcess()
 }
+
+async function startProcess(){
+    p.intro(
+        `${color.bgMagenta(
+          color.black("What template you would like to use?")
+        )}`
+      );
+}
+
+async function renderMenu() {
+    const repository = await p.select({
+      message: "Select one",
+      options,
+    });
+   
+    return p.isCancel(repository) || availableRepositories[repository - 1].end?endProcess():availableRepositories[repository - 1];
+  }
+
+async function throwError(error){
+    p.intro(
+        `${color.bgRed(
+          color.white(error)
+        )}`
+      );
+}
+
+async function endProcess(){
+    p.outro(`Thanks for using the CLI! Check the repository here and feel free to open issues or PR https://github.com/tomihq/templates-cli`);
+    process.exit()
+}
+
 
 main();
