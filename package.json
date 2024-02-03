@@ -1,0 +1,18 @@
+{
+  "name": "cli-starter-frameworks-templates",
+  "version": "1.0.0",
+  "description": "A CLI that clones in your own machine templates as Nest.js, Next.js, Express and more",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": "./index.js",
+  "author": "tomihq",
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "@clack/prompts": "^0.7.0",
+    "picocolors": "^1.0.0"
+  },
+  "type": "module"
+}
