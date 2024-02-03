@@ -41,6 +41,14 @@ async function throwError(error){
       );
 }
 
+async function startProcess(){
+    p.intro(
+        `${color.bgMagenta(
+          color.black("What template you would like to use?")
+        )}`
+      );
+}
+
 async function endProcess(){
     p.outro(`Thanks for using the CLI! Check the repository here and feel free to open issues or PR https://github.com/tomihq/templates-cli`);
     process.exit()
@@ -59,14 +67,9 @@ async function renderMenu() {
 
 async function main() {
   let end = false;
-  let user = "";
-  let repositoryName = ""
+  let user, repositoryName = "";
   while (!end) {
-    p.intro(
-      `${color.bgMagenta(
-        color.black("What template you would like to use?")
-      )}`
-    );
+    startProcess()
     const {name: nameSelected, user: userSelected, repositoryName: repositoryNameSelected} = await renderMenu();
     user = userSelected
     if(fs.existsSync(repositoryNameSelected)){
@@ -83,11 +86,9 @@ async function main() {
     if(p.isCancel(shouldContinue)) endProcess()
     
     const s = p.spinner();
-    s.start(`Cloning "${repositoryName}"...`);
      shell.exec(
       `git clone https://github.com/${user}/${repositoryName}`
     ).stdout;
-    s.stop('End!');
     p.intro("Done!");
 
   }
