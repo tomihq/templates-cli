@@ -85,7 +85,6 @@ async function main() {
     if(!shouldContinue) continue;
     if(p.isCancel(shouldContinue)) endProcess()
     
-    const s = p.spinner();
      shell.exec(
       `git clone https://github.com/${user}/${repositoryName}`
     ).stdout;
@@ -94,7 +93,6 @@ async function main() {
   }
 
   endProcess()
-  end = true;
 }
 
 main();
