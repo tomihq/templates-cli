@@ -3,20 +3,8 @@ import * as p from "@clack/prompts";
 import color from "picocolors";
 import shell from "shelljs";
 import fs from 'fs'
-const availableRepositories = [
-  {
-    id: 1,
-    user: "tomihq",
-    name: "Nest.js with Postgres",
-    repositoryName: "nestjs-postgres-starter",
-  },
-  {
-    id: 2,
-    user: "tomihq",
-    name: "Express.js & Joi Validations & TypeScript",
-    repositoryName: "express-joi-typescript",
-  },
-];
+import { availableRepositories } from "./repositories.js";
+
 
 const exitOption = {
     id: availableRepositories.length + 1,
@@ -42,13 +30,13 @@ async function main() {
     const {name: nameSelected, user: userSelected, repositoryName: repositoryNameSelected} = await renderMenu();
     user = userSelected
     if(fs.existsSync(repositoryNameSelected)){
-        throwError("You've already cloned this repository in your current directory.")
+        throwError("You've already cloned this repository in your current directory ❗")
         continue;
     }
 
     repositoryName = repositoryNameSelected
     const shouldContinueWithInstallation = await p.confirm({
-      message: `This action will clone in your current directory the "${nameSelected}" repository. Are you sure?`,
+      message: `💡 This action will clone in your current directory the "${nameSelected}" repository. Are you sure?`,
     });
 
     if(!shouldContinueWithInstallation || p.isCancel(shouldContinueWithInstallation)) continue;
@@ -66,7 +54,7 @@ async function main() {
 async function startProcess(){
     p.intro(
         `${color.bgMagenta(
-          color.black("What template you would like to use?")
+          color.black("📚 What template you would like to use?")
         )}`
       );
 }
@@ -89,7 +77,7 @@ async function throwError(error){
 }
 
 async function endProcess(){
-    p.outro(`Thanks for using the CLI! Check the repository here and feel free to open issues or PR https://github.com/tomihq/templates-cli`);
+    p.outro(`${color.bgGreen(color.white(`Thanks for using the CLI! Check the repository here and feel free to open issues or PR https://github.com/tomihq/templates-cli`))}`);
     process.exit()
 }
 
