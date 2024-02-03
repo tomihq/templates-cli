@@ -54,7 +54,7 @@ async function main() {
 async function startProcess(){
     p.intro(
         `${color.bgMagenta(
-          color.white("📚 What template you would like to use?")
+          color.white("📚 What template would you like to use?")
         )}`
       );
 }
